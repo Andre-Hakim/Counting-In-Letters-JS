@@ -1,0 +1,112 @@
+<link href="https://fonts.googleapis.com/css?family=Signika&display=swap" rel="stylesheet">
+<!-- <link href="{ENTER STYLE PATH HERE}" rel="stylesheet">
+<script type="text/javascript" src="{ENTER JS PATH HERE}"></script> -->
+<style>
+body {
+  font-family: Signika;
+}
+
+.Button {
+  background-color: #339af0;
+  border:none;
+  border-radius: .5rem;
+  box-shadow: 2px 2px 4px grey;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  outline: none;
+  padding: 1rem;
+  transition: 0.3s;
+  width: 150px;
+}
+
+Button:hover {
+  background-color: #004b8d;
+}
+
+Button:active{
+   background-color: white;
+   box-shadow: inset 0px 0px 5px #002f59;
+   outline: none;
+}
+
+.TextBox {
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px grey;
+  font-size: 20px;
+  outline: none;
+  padding-left: 10px;
+}
+
+#buttonDiv {
+  margin: 15px auto;
+}
+
+#inputDiv {
+  margin: 10px auto;
+}
+
+#mainDiv {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+#secondaryDiv {
+  border-radius: 20px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: 400px;
+}
+</style>
+<script>
+var enterText = document.getElementById("textBox1");
+
+enterText.addEventListener("keyup", function(event) {
+  if (event.keyCode == 13) {
+    document.getElementById("button1").click();
+  }
+});
+
+function Convert() {
+  var textboxInput = document.getElementById("textBox1").value;
+  var number = parseInt(textboxInput);
+  var letters = "";
+  var char = "";
+  if (isNaN(number)) {
+    document.getElementById("outputField").innerHTML = "Please Enter A Number";
+  } else {
+    while (number > 0) {
+      char = String.fromCharCode((((number - 1) % 26) + 65));
+      letters = char + letters;
+      number = Math.abs(~~((number - 1) / 26));
+    }
+
+    document.getElementById("outputField").innerHTML = letters;
+  }
+
+}
+
+</script>
+
+<div id="mainDiv">
+  <div id="secondaryDiv">
+    <div id="inputDiv">
+      <input type="text" class="TextBox" id="textBox1" placeholder="Enter a Number...">
+    </div>
+    <div id="buttonDiv">
+      <button type="button" class="Button" id="button1" onclick="Convert()"> Convert </button>
+    </div>
+    <div id="outputDiv">
+      <h3 id="outputField"></h3>
+    </div>
+  </div>
+</div>
